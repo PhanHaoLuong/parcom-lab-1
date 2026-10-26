@@ -1,7 +1,22 @@
 THREADS ?= 1
+N ?= 1
 
-default: convo.cpp
-	g++ -O2 -fopenmp ./convo.cpp ./load_heat_matrix.cpp -o convo
+CXX = g++
+
+CXXFLAGS = -O3 -fopenmp \
+           -fcf-protection=none \
+           -fno-stack-protector \
+           -foffload=nvptx-none \
+           -foffload-options=nvptx-none=-misa=sm_80
+					 -march=native
+
+default:
+	$(CXX) $(CXXFLAGS) ./convo.cpp ./load_heat_matrix.cpp -o convo
 
 run: default
-	OMP_NUM_THREADS=$(THREADS) ./convo
+	OMP_TARGET_OFFLOAD=MANDATORY OMP_NUM_THREADS=$(THREADS) ./convo $(N)
+
+clean:
+	rm -f convo
+
+.PHONY: default run clean
