@@ -1,0 +1,32 @@
+# ---- build artefacts -------------------------------------------------------
+/build/
+*.o
+*.obj
+*.exe
+*.out
+convo
+launch_test
+read_csv
+
+# ---- benchmark / report artefacts -----------------------------------------
+/results/*.log
+/results/*.tmp
+/report/report.html
+/report/.tmp/
+
+# ---- local tooling, never part of the submission ---------------------------
+/.tools/
+/.dsh-office-*/
+Lab_1_*.zip
+*.zip
+
+# ---- course material provided by the lecturer, not part of the submission ---
+/Parallel_Computing__Lab_1.pdf
+
+# ---- editors / OS ----------------------------------------------------------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.bak

@@ -1,0 +1,29 @@
+# Everything is stored as LF in the repo and checked out as LF on every
+# platform. The course requires Linux: CRLF shell scripts are the single most
+# common reason a submission fails to build there.
+* text=auto eol=lf
+
+*.sh        text eol=lf
+*.bash      text eol=lf
+Makefile    text eol=lf
+*.mk        text eol=lf
+*.cpp       text eol=lf
+*.hpp       text eol=lf
+*.h         text eol=lf
+*.c         text eol=lf
+*.md        text eol=lf
+*.txt       text eol=lf
+*.py        text eol=lf
+*.csv       text eol=lf
+*.json      text eol=lf
+
+# Provided dataset: never rewrite it (96 MB, CRLF in the original export).
+heat_matrix.csv  binary
+
+# Binary artefacts.
+*.png       binary
+*.jpg       binary
+*.pdf       binary
+*.o         binary
+*.exe       binary
+*.zip       binary

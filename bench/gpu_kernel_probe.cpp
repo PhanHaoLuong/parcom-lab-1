@@ -1,3 +1,20 @@
+// bench/gpu_kernel_probe.cpp -- which kernel shape is fastest on the GPU?
+//
+// This is the experiment behind section 5.1 of the report: it runs three
+// different GPU formulations of the same 3x3 convolution on a synthetic
+// 4000x4000 field, times each one, and checks the deviation from a CPU
+// reference. It is NOT part of the normal build (build.sh does not compile it)
+// because it only makes sense on a machine whose compiler has an nvptx offload
+// target:
+//
+//   g++ -O3 -fopenmp -foffload=nvptx-none \
+//       -foffload-options=nvptx-none=-misa=sm_75 bench/gpu_kernel_probe.cpp -o probe
+//   OMP_TARGET_OFFLOAD=MANDATORY ./probe
+//
+// Without an offload-capable compiler the `target` pragmas are silently ignored
+// and the numbers become host timings -- exactly the trap described in section
+// 5.1. Cross-check against the CPU reference before believing the output.
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
